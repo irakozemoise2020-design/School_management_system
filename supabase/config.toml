@@ -1,0 +1,5 @@
+# Project-specific connection details are intentionally not committed.
+# Run `supabase link --project-ref <your-project-ref>` before deployment.
+
+[functions.api]
+verify_jwt = true
