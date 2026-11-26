@@ -3,13 +3,16 @@ import { supabase } from "./supabase";
 
 type ApiEnvelope<T> = { data?: T; error?: string };
 
+// The name Supabase gave the deployed function (shown in its web address). Override with VITE_API_FUNCTION if yours differs.
+const FUNCTION_NAME = (import.meta.env.VITE_API_FUNCTION as string | undefined) || "swift-api";
+
 export class SchoolApiError extends Error {
   constructor(message: string) { super(message); this.name = "SchoolApiError"; }
 }
 
 /** Calls the authenticated Supabase Edge Function rather than a table or RPC directly. */
 export async function schoolApi<T>(operation: string, payload?: Record<string, unknown>) {
-  const { data, error } = await supabase.functions.invoke<ApiEnvelope<T>>("api", { body: { operation, payload } });
+  const { data, error } = await supabase.functions.invoke<ApiEnvelope<T>>(FUNCTION_NAME, { body: { operation, payload } });
   if (error) {
     // A non-2xx answer carries the real reason in its body; show that instead of a generic message.
     if (error instanceof FunctionsHttpError) {

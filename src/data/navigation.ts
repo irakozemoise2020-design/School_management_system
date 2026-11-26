@@ -5,19 +5,19 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-export type NavigationItem = { label: string; href: string; icon: LucideIcon; phase: number };
+export type NavigationItem = { label: string; href: string; icon: LucideIcon; phase: number; /** Permission needed to see the item (omitted = everyone in the school). */ needs?: string };
 
 export const navigation: NavigationItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard, phase: 1 },
-  { label: "Admissions", href: "/admissions", icon: ClipboardCheck, phase: 2 },
-  { label: "Students", href: "/students", icon: UsersRound, phase: 2 },
-  { label: "Academics", href: "/academics", icon: GraduationCap, phase: 2 },
-  { label: "Attendance", href: "/attendance", icon: Activity, phase: 2 },
-  { label: "Timetable", href: "/timetable", icon: CalendarDays, phase: 2 },
+  { label: "Admissions", href: "/admissions", icon: ClipboardCheck, phase: 2, needs: "admissions.view" },
+  { label: "Students", href: "/students", icon: UsersRound, phase: 2, needs: "students.view" },
+  { label: "Academics", href: "/academics", icon: GraduationCap, phase: 2, needs: "academics.view" },
+  { label: "Attendance", href: "/attendance", icon: Activity, phase: 2, needs: "attendance.view" },
+  { label: "Timetable", href: "/timetable", icon: CalendarDays, phase: 2, needs: "timetable.view" },
   { label: "Examinations", href: "/examinations", icon: FileBarChart, phase: 3 },
   { label: "Fees & Finance", href: "/finance", icon: CreditCard, phase: 4 },
   { label: "Accounting", href: "/accounting", icon: BarChart3, phase: 4 },
-  { label: "Teachers & Staff", href: "/staff", icon: BriefcaseBusiness, phase: 6 },
+  { label: "Teachers & Staff", href: "/staff", icon: BriefcaseBusiness, phase: 2, needs: "staff.view" },
   { label: "Learning", href: "/learning", icon: BookOpen, phase: 7 },
   { label: "Library", href: "/library", icon: Library, phase: 6 },
   { label: "Transport", href: "/transport", icon: Bus, phase: 6 },
@@ -27,7 +27,7 @@ export const navigation: NavigationItem[] = [
   { label: "Cafeteria", href: "/cafeteria", icon: UtensilsCrossed, phase: 6 },
   { label: "Communication", href: "/communication", icon: MessageSquareMore, phase: 5 },
   { label: "Reports", href: "/reports", icon: FileBarChart, phase: 7 },
-  { label: "Settings", href: "/settings", icon: Settings, phase: 1 },
+  { label: "Settings", href: "/settings", icon: Settings, phase: 1, needs: "users.view,settings.view" },
   { label: "Platform", href: "/platform", icon: ShieldCheck, phase: 1 },
 ];
 

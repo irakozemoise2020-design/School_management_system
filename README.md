@@ -14,6 +14,9 @@ Putting it live: see DEPLOY.md. Review of this phase: docs/phase-1-audit.md.
 
 The client intentionally contains no service-role key. Configure Supabase Authentication email/password and the production redirect URLs before deploying.
 
+## Phase 2 (this version)
+See `UPGRADE_PHASE2.md` for what was added and how to install it. Migrations run in order 0001 → 0004 (0003 on its own).
+
 ## Delivered in Phase 1
 
 - Static frontend plus authenticated `api` Edge Function, multi-school foundation, RLS policies, roles, audit log, and onboarding RPC.
